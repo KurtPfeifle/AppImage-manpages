@@ -14,7 +14,7 @@ before_script:
   - export DEST=$HOME/.local
   - tar xvzf $TGZ --strip-components 1 -C $DEST
   - export PATH=$HOME/.local/bin:$PATH
-  - export PREFIX=$(pwd)/AppImage-manpages
+  - export PREFIX=./AppImage-manpages
   - mkdir -p $PREFIX/{man,pdf,epub,html}
   - export MANDIR=$PREFIX/man
   - export PDFDIR=$PREFIX/pdf
@@ -27,26 +27,26 @@ before_script:
 
 script:
 
-  - cd markdown
-  - ls -l *.md
+  - ls -l markdown/*.md
 
     # Manual pages:
-  - for i in *.md ; do cat $i | sed 's#__date__#'"$DATE"'#' | pandoc - -s -t man   -f markdown -o $MANDIR/${i/-manpage.md/.man} -V footer:"Manual Page Version $VERSION, $DATE" ; done
+  - for i in markdown/*.md ; do cat $i | sed 's#__date__#'"$DATE"'#' | pandoc - -s -t man   -f markdown -o $MANDIR/${i/-manpage.md/.man} -V footer:"Manual Page Version $VERSION, $DATE" ; done
 
     # HTML docs:
-  - for i in *.md ; do cat $i | sed 's#__date__#'"$DATE"'#' | pandoc - -s -t html  -f markdown -o $HTMLDIR/${i/-manpage.md/.html} ; done
+  - for i in markdown/*.md ; do cat $i | sed 's#__date__#'"$DATE"'#' | pandoc - -s -t html  -f markdown -o $HTMLDIR/${i/-manpage.md/.html} ; done
 
     # PDF docs:
-  - for i in *.md ; do cat $i | sed 's#__date__#'"$DATE"'#' | pandoc - -s -t latex -f markdown -o $PDFDIR/${i/-manpage.md/.pdf} -V geometry:"margin=1.5cm, paperwidth=595pt, paperheight=297mm" ; done
+  - for i in markdown/*.md ; do cat $i | sed 's#__date__#'"$DATE"'#' | pandoc - -s -t latex -f markdown -o $PDFDIR/${i/-manpage.md/.pdf} -V geometry:"margin=1.5cm, paperwidth=595pt, paperheight=297mm" ; done
 
     # EPUB docs:
-  - for i in *.md ; do cat $i | sed 's#__date__#'"$DATE"'#' | pandoc - -s -t epub3 -f markdown -o $EPUBDIR/${i/-manpage.md/.epub} ; done
+  - for i in markdown/*.md ; do cat $i | sed 's#__date__#'"$DATE"'#' | pandoc - -s -t epub3 -f markdown -o $EPUBDIR/${i/-manpage.md/.epub} ; done
 
     # Make tarball:
-  - cd ..
   - export TARBALL=AppImage-manpages-$TRAVIS_BUILD_NUMBER-git.$(git rev-parse --short HEAD)-$DATE.tar.gz
-  - tar cvzf $TARBALL.tar.gz $PREFIX
+  - tar cvzf $TARBALL $PREFIX
 
     # Upload results:
-  - wget -c https://github.com/probonopd/uploadtool/raw/master/upload.sh
-  - bash upload.sh ./$TARBALL.tar.gz
+    #- wget -c https://github.com/probonopd/uploadtool/raw/master/upload.sh
+    #- bash upload.sh ./$TARBALL     # Not yet!
+  - curl --upload-file $TARBALL  https://transfer.sh/$TARBALL
+
