@@ -1,12 +1,18 @@
+\listfiles
+
 % APPIMAGEOVERVIEW(1) AppImage Technology Overview | The AppImage Documentation Project
 %
 % __date__
 
 <!-- Generate man, HTML or PDF output like so:
 
-    pandoc AppImage-Overview-manpage.md -o AppImage-Overview-manpage.man  -s -f markdown -t man   -V footer:"Manual Page Version 0.0.1"
-    pandoc AppImage-Overview-manpage.md -o AppImage-Overview-manpage.html -s -f markdown -t html
-    pandoc AppImage-Overview-manpage.md -o AppImage-Overview-manpage.pdf  -s -f markdown -t latex -V footer:"Manual Page Version 0.0.1" -V geometry:"margin=1.5cm, paperwidth=595pt, paperheight=297mm"
+    DATE=$(date "+%Y-%m-%d")
+    VERSION=0.0.1
+    # replace line 5 in this file, above: $DATE instead of '__date__'
+    pandoc AppImage-Overview-manpage.md -o AppImage-Overview.man  -s -f markdown -t man   -V footer:"Manual Page Version $VERSION, $DATE"
+    pandoc AppImage-Overview-manpage.md -o AppImage-Overview.pdf  -s -f markdown -t latex -V footer:"Manual Page Version $VERSION" -V geometry:"margin=2.0cm, paperwidth=595pt, paperheight=297mm"
+    pandoc AppImage-Overview-manpage.md -o AppImage-Overview.html -s -f markdown -t html
+    pandoc AppImage-Overview-manpage.md -o AppImage-Overview.epub -s -f markdown -t epub3
 
 -->
 
@@ -67,6 +73,7 @@ An AppImage does not mess with your base system libraries (because it does not "
 An AppImage does not conflict with files installed and controlled by your local package management system (such as APT, RPM, YUM, ZYPPER, SMART or whatever they may be called).
 
 An AppImage for any software 'XYZ' can run side-by-side with the system-installed software 'XYZ' (or with another 'XYZ'-AppImage) without any interference, even if their versions are very different.
+(CAVEAT: see 'Known Caveats', below.)
 
 An AppImage for software 'ABC' is an excellent tool to make available pre-releases for beta-testing to the community of your own QA, translator, artist and other contributors and users.
 
@@ -100,6 +107,12 @@ An AppImage can be made to self-update using the AppImageUpdate GUI utility or t
 Both these are great in so far as they will not download all the bytes for a completely new AppImage version.
 Instead they fetch only the binary "delta" of bytes and patch the previous AppImage to a new one.
 This saves bandwidth, space and time for the end users as well as for the hosting service.
+
+# Known Caveats
+
+While an AppImage will never mess with your system libraries, there are known cases where a payload application may try to save its own settings and data files into its own standard location in the invoking user's *$HOME/.config/<application>* directory or similar.
+This can cause un-intentional over-writing of the user's previous settings.
+To avoid such situations, please make use of the *`--appimage-home`* parameter (for details, please see *`man AppImage-Appimage`*).
 
 
 # Dog food
