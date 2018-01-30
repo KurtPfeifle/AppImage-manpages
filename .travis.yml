@@ -24,6 +24,7 @@ before_script:
   - export DATE=$(/bin/date "+%Y-%m-%d")
   - find $HOME/.local -type f -ls        # For debugging only
   - find $PREFIX      -type d -ls        # For debugging only
+  - find / -type f -name unicode-math.sty -ls
 
 script:
 
