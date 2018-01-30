@@ -5,7 +5,7 @@ dist: trusty
 before_script:
 
   - sudo apt-get update
-  - sudo apt-get install texlive-xetex fonts-droid fonts-ipafont-mincho fonts-ipafont-gothic fonts-arphic-ukai fonts-arphic-uming fonts-unfonts-core   # "No insta candidate": fonts-japanese-mincho  fonts-japanese-gothic 
+  - sudo apt-get install texlive-xetex texlive-latex-recommended fonts-droid fonts-ipafont-mincho fonts-ipafont-gothic fonts-arphic-ukai fonts-arphic-uming fonts-unfonts-core   # "No insta candidate": fonts-japanese-mincho  fonts-japanese-gothic 
   - mkdir $HOME/Downloads
   - export PANDOCVERS=2.1.1-linux
   - wget https://github.com/jgm/pandoc/releases/download/2.1.1/pandoc-$PANDOCVERS.tar.gz -O $HOME/Downloads/pandoc.tar.gz
