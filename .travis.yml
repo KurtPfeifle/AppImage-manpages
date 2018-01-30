@@ -49,4 +49,4 @@ script:
   
   - # Upload results:
   - wget -c https://github.com/probonopd/uploadtool/raw/master/upload.sh
-  - bash upload.sh ./TARBALL.tar.gz
+  - bash upload.sh ./$TARBALL.tar.gz
