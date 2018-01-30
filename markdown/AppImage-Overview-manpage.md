@@ -39,7 +39,7 @@ This is useful if you want to debug a problem within the original AppImage or wa
 
 # Main Features
 
-An AppImage implements the fundamental, simple and beautiful software design philosphy of "One application == One file".
+An AppImage implements the fundamental, simple and beautiful software design philosphy of "One Application == One File".
 (It can even realize the idea of "Several applications == One file".)
 
 An AppImage lets you store any application in as small an amount of disk space as you can imagine, while at the same time keeping its software payload fully functional.
@@ -194,7 +194,7 @@ AppImage-zsyncmake2(1).
 **linuxdeployqt:**
 
 - **linuxdeployqt Source Code:** [github.com/probonopd/linuxdeployqt](https://github.com/probonopd/linuxdeployqt)
-- **linuxdeployqt Download:** [github.com/probonopd/linuxdeployqt/releases](https://github.com/probonopd/linuxdeployqt/releases)
+- **linuxdeployqt Download:** [github.com/probonopd/linuxdeployqt/releases](https://github.com/probonopd/linuxdeployqt/releases) (`linuxdeployqt`)
 - **linuxdeployqt Bug Tracker:** [github.com/probonopd/linuxdeployqt/issues](https://github.com/probonopd/linuxdeployqt/issues)
 - **linuxdeployqt Wiki:** [github.com/probonopd/linuxdeployqt/wiki](https://github.com/probonopd/linuxdeployqt/wiki)
 
@@ -204,6 +204,13 @@ AppImage-zsyncmake2(1).
 - **AppImageUpdate Downloads:** [github.com/AppImage/AppImageUpdate/releases](https://github.com/AppImage/AppImageUpdate/releases) (`AppImageUpdate` (GUI) and `appimageupdatetool` (CLI))
 - **AppImageUpdate Bug Tracker:** [github.com/AppImage/AppImageUpdate/issues](https://github.com/AppImage/AppImageUpdate/issues)
 - **AppImageUpdate Wiki:** [github.com/AppImage/AppImageUpdate/wiki](https://github.com/AppImage/AppImageUpdate/wiki)
+
+**zsync2:**
+
+- **zsyn2 Tools Source Code:** [github.com/AppImage/zsync2](https://github.com/AppImage/zsync2)
+- **zsyn2 Downloads:** [github.com/AppImage/zsync2/releases](https://github.com/AppImage/zsync2/releases) (`zsync2` and `zsyncmake2`)
+- **zsyn2 Bug Tracker:** [github.com/AppImage/zsync2/issues](https://github.com/AppImage/zsync2/issues)
+- **zsyn2 Wiki:** [github.com/AppImage/zsync2/wiki](https://github.com/AppImage/zsync2/wiki)
 
 
 # Developers
