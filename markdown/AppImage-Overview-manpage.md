@@ -176,15 +176,34 @@ AppImage-zsyncmake2(1).
 
 # AppImage Ressources
 
-- **Download AppImageKit tools:** [github.com/AppImage/AppImageKit/releases](https://github.com/AppImage/AppImageKit/releases) (`appimaged` and `appimagetool`)
-- **AppImage Bug Tracker:** [github.com/AppImage/AppImageKit](https://github.com/AppImage/AppImageKit)
+**General:**
+
 - **AppImage Format Specification:** [github.com/AppImage/AppImageSpec](https://github.com/AppImage/AppImageSpec)
 - **AppImage Homepage:** [appimage.org/](https://appimage.org/)
 - **AppImage License (MIT):** [github.com/AppImage/AppImageKit/blob/appimagetool/master/LICENSE](https://github.com/AppImage/AppImageKit/blob/appimagetool/master/LICENSE)
-- **AppImage Wiki:** [github.com/AppImage/AppImageKit/wiki](https://github.com/AppImage/AppImageKit/wiki)
 - **AppImage on IRC:** [webchat.freenode.net/?channels=appimage](https://webchat.freenode.net/?channels=appimage)
-- **AppImageKit on GitHub:** [github.com/AppImage/AppImageKit](https://github.com/AppImage/AppImageKit)
 - **List of AppImages** (crowd-sourced): [appimage.github.io/apps/](https://appimage.github.io/apps/)
+
+**AppImageKit:**
+
+- **AppImageKit Tools Source Code:** [github.com/AppImage/AppImageKit](https://github.com/AppImage/AppImageKit)
+- **AppImageKit Tools Downloads:** [github.com/AppImage/AppImageKit/releases](https://github.com/AppImage/AppImageKit/releases) (`appimaged` and `appimagetool`)
+- **AppImageKit Bug Tracker:** [github.com/AppImage/AppImageKit/issues](https://github.com/AppImage/AppImageKit/issues)
+- **AppImageKit Wiki:** [github.com/AppImage/AppImageKit/wiki](https://github.com/AppImage/AppImageKit/wiki)
+
+**linuxdeployqt:**
+
+- **linuxdeployqt Source Code:** [github.com/probonopd/linuxdeployqt](https://github.com/probonopd/linuxdeployqt)
+- **linuxdeployqt Download:** [github.com/probonopd/linuxdeployqt/releases](https://github.com/probonopd/linuxdeployqt/releases)
+- **linuxdeployqt Bug Tracker:** [github.com/probonopd/linuxdeployqt/issues](https://github.com/probonopd/linuxdeployqt/issues)
+- **linuxdeployqt Wiki:** [github.com/probonopd/linuxdeployqt/wiki](https://github.com/probonopd/linuxdeployqt/wiki)
+
+**AppImageUpdate:**
+
+- **AppImageUpdate Tools Source Code:** [github.com/AppImage/AppImageUpdate](https://github.com/AppImage/AppImageUpdate)
+- **AppImageUpdate Downloads:** [github.com/AppImage/AppImageUpdate/releases](https://github.com/AppImage/AppImageUpdate/releases) (`AppImageUpdate` (GUI) and `appimageupdatetool` (CLI))
+- **AppImageUpdate Bug Tracker:** [github.com/AppImage/AppImageUpdate/issues](https://github.com/AppImage/AppImageUpdate/issues)
+- **AppImageUpdate Wiki:** [github.com/AppImage/AppImageUpdate/wiki](https://github.com/AppImage/AppImageUpdate/wiki)
 
 
 # Developers
