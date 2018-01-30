@@ -8,9 +8,10 @@ before_script:
   - export PANDOCVERS=2.1.1-linux
   - wget https://github.com/jgm/pandoc/releases/download/2.1.1/pandoc-$PANDOCVERS.tar.gz -O $HOME/Downloads/pandoc.tar.gz
   - export TGZ=$HOME/Downloads/pandoc.tar.gz
-  - export DEST=/usr/local
+  - mkdir $HOME/.local
+  - export DEST=$HOME/.local
   - tar xvzf $TGZ --strip-components 1 -C $DEST
-  - export PATH=/usr/local/bin:$PATH
+  - export PATH=$HOME/.local/bin:$PATH
   - export PREFIX=./AppImage-manpages/
   - export MANDIR=$PREFIX/man
   - export PDFDIR=$PREFIX/pdf
@@ -18,6 +19,7 @@ before_script:
   - export HTMLDIR=$PREFIX/html
   - export VERSION=0.0.1
   - export DATE=$(/bin/date "+%Y-%m-%d")
+  - find $HOME/.local -type f -ls
 
 script:
 
