@@ -1,0 +1,44 @@
+language: bash
+sudo: require
+dist: trusty
+
+before_script:
+
+  - mkdir $HOME/Downloads
+  - export PANDOCVERS=2.1.1-linux
+  - wget https://github.com/jgm/pandoc/releases/download/2.1.1/pandoc-$PANDOCVERS.tar.gz -O $HOME/Downloads/pandoc.tar.gz
+  - export TGZ=$HOME/Downloads/pandoc.tar.gz
+  - export DEST=/usr/local
+  - tar xvzf $TGZ --strip-components 1 -C $DEST
+  - export PATH=/usr/local/bin:$PATH
+  - export PREFIX=./AppImage-manpages/
+  - export MANDIR=$PREFIX/man
+  - export PDFDIR=$PREFIX/pdf
+  - export EPUBDIR=$PREFIX/epub
+  - export HTMLDIR=$PREFIX/html
+  - export VERSION=0.0.1
+  - export DATE=$(/bin/date "+%Y-%m-%d")
+
+script:
+
+  - cd markdown
+  
+  - # Manual pages:
+  - for i in *.md ; do pandoc $i -s -t man   -f markdown -o $MANDIR/${i/.md/.man} -V footer:"Manual Page Version $VERSION, $DATE" ; done
+  
+  - # HTML docs:
+  - for i in *.md ; do pandoc $i -s -t html  -f markdown -o $HTMLDIR/${i/.md/.html} ; done
+  
+  - # PDF docs:
+  - for i in *.md ; do pandoc $i -s -t latex -f markdown -o $PDFDIR/${i/.md/.pdf}   ; done
+  
+  - # EPUB docs:
+  - for i in *.md ; do pandoc $i -s -t epub3 -f markdown -o $EPUBDIR/${i/.md/.epub} ; done
+  
+  - # Make tarball:
+  - cd ..
+  - tar cvzf AppImage-manpages-$DATE.tar.gz $PREFIX
+  
+  - # Upload results:
+  - wget -c https://github.com/probonopd/uploadtool/raw/master/upload.sh
+  - bash upload.sh ./AppImage-manpages-$DATE.tar.gz
