@@ -29,16 +29,16 @@ script:
   - ls -l *.md
   
   - # Manual pages:
-  - for i in *.md ; do cat $i | sed 's#__date__#'"$DATE"'#' | pandoc -s -t man   -f markdown -o $MANDIR/${i/-manpage.md/.man} -V footer:"Manual Page Version $VERSION, $DATE" ; done
+  - for i in *.md ; do cat $i | sed 's#__date__#'"$DATE"'#' | pandoc - -s -t man   -f markdown -o $MANDIR/${i/-manpage.md/.man} -V footer:"Manual Page Version $VERSION, $DATE" ; done
   
   - # HTML docs:
-  - for i in *.md ; do cat $i | sed 's#__date__#'"$DATE"'#' | pandoc -s -t html  -f markdown -o $HTMLDIR/${i/-manpage.md/.html} ; done
+  - for i in *.md ; do cat $i | sed 's#__date__#'"$DATE"'#' | pandoc - -s -t html  -f markdown -o $HTMLDIR/${i/-manpage.md/.html} ; done
   
   - # PDF docs:
-  - for i in *.md ; do cat $i | sed 's#__date__#'"$DATE"'#' | pandoc -s -t latex -f markdown -o $PDFDIR/${i/-manpage.md/.pdf} -V geometry:"margin=1.5cm, paperwidth=595pt, paperheight=297mm" ; done
+  - for i in *.md ; do cat $i | sed 's#__date__#'"$DATE"'#' | pandoc - -s -t latex -f markdown -o $PDFDIR/${i/-manpage.md/.pdf} -V geometry:"margin=1.5cm, paperwidth=595pt, paperheight=297mm" ; done
   
   - # EPUB docs:
-  - for i in *.md ; do cat $i | sed 's#__date__#'"$DATE"'#' | pandoc -s -t epub3 -f markdown -o $EPUBDIR/${i/-manpage.md/.epub} ; done
+  - for i in *.md ; do cat $i | sed 's#__date__#'"$DATE"'#' | pandoc - -s -t epub3 -f markdown -o $EPUBDIR/${i/-manpage.md/.epub} ; done
   
   - # Make tarball:
   - cd ..
