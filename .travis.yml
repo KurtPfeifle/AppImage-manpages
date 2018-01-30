@@ -37,8 +37,9 @@ script:
   
   - # Make tarball:
   - cd ..
-  - tar cvzf AppImage-manpages-$DATE.tar.gz $PREFIX
+  - export TARBALL=AppImage-manpages-$TRAVIS_BUILD_NUMBER-git.$(git rev-parse --short HEAD)-$DATE.tar.gz
+  - tar cvzf $TARBALL.tar.gz $PREFIX
   
   - # Upload results:
   - wget -c https://github.com/probonopd/uploadtool/raw/master/upload.sh
-  - bash upload.sh ./AppImage-manpages-$DATE.tar.gz
+  - bash upload.sh ./TARBALL.tar.gz
