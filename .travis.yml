@@ -27,6 +27,7 @@ before_script:
   - find /usr/share/texlive -type f -name filehook.sty -ls
   - find /usr/share/texlive -type f -name filehook.sty
     #- dpkg -S /usr/share/texlive/texmf-dist/tex/latex/unicode-math/unicode-math.sty
+  - dpkg -S /usr/share/texlive/texmf-dist/tex/latex/filehook/filehook.sty
 
 script:
 
