@@ -12,7 +12,7 @@ before_script:
   - export DEST=$HOME/.local
   - tar xvzf $TGZ --strip-components 1 -C $DEST
   - export PATH=$HOME/.local/bin:$PATH
-  - export PREFIX=./AppImage-manpages
+  - export PREFIX=$(pwd)/AppImage-manpages
   - mkdir -p $PREFIX/{man,pdf,epub,html}
   - export MANDIR=$PREFIX/man
   - export PDFDIR=$PREFIX/pdf
