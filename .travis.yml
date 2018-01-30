@@ -12,7 +12,8 @@ before_script:
   - export DEST=$HOME/.local
   - tar xvzf $TGZ --strip-components 1 -C $DEST
   - export PATH=$HOME/.local/bin:$PATH
-  - export PREFIX=./AppImage-manpages/
+  - export PREFIX=./AppImage-manpages
+  - mkdir -p $PREFIX/{man,pdf,epub,html}
   - export MANDIR=$PREFIX/man
   - export PDFDIR=$PREFIX/pdf
   - export EPUBDIR=$PREFIX/epub
@@ -24,6 +25,7 @@ before_script:
 script:
 
   - cd markdown
+  - ls -l *.md
   
   - # Manual pages:
   - for i in *.md ; do cat $i | sed 's#__date__#'"$DATE"'#' | pandoc -s -t man   -f markdown -o $MANDIR/${i/-manpage.md/.man} -V footer:"Manual Page Version $VERSION, $DATE" ; done
