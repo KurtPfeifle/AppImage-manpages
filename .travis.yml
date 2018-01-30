@@ -25,6 +25,8 @@ before_script:
   - find $HOME/.local -type f -ls        # For debugging only
   - find $PREFIX      -type d -ls        # For debugging only
   - find /usr/share/texlive -type f -name unicode-math.sty -ls
+  - find /usr/share/texlive -type f -name unicode-math.sty
+  - dpkg -S /usr/share/texlive/texmf-dist/tex/latex/unicode-math/unicode-math.sty
 
 script:
 
