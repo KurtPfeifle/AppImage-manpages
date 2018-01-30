@@ -5,7 +5,7 @@ dist: trusty
 before_script:
 
   - sudo apt-get update
-  - sudo apt-get install texlive-xetex texlive-latex-recommended fonts-droid fonts-ipafont-mincho fonts-ipafont-gothic fonts-arphic-ukai fonts-arphic-uming fonts-unfonts-core   # "No insta candidate": fonts-japanese-mincho  fonts-japanese-gothic 
+  - sudo apt-get install texlive-xetex texlive-latex-recommended texlive-* fonts-droid fonts-ipafont-mincho fonts-ipafont-gothic fonts-arphic-ukai fonts-arphic-uming fonts-unfonts-core   # "No insta candidate": fonts-japanese-mincho  fonts-japanese-gothic 
   - mkdir $HOME/Downloads
   - export PANDOCVERS=2.1.1-linux
   - wget https://github.com/jgm/pandoc/releases/download/2.1.1/pandoc-$PANDOCVERS.tar.gz -O $HOME/Downloads/pandoc.tar.gz
@@ -33,7 +33,7 @@ script:
   - for i in markdown/*.md ; do cat $i | sed 's#__date__#'"$DATE"'#' | pandoc - -s -t man   -f markdown -o $MANDIR/$(basename ${i/-manpage.md/.man}) -V footer:"Manual Page Version $VERSION, $DATE" ; done
 
     # PDF docs:
-  - for i in markdown/*.md ; do cat $i | sed 's#__date__#'"$DATE"'#' | pandoc - -s -t latex -f markdown -o $PDFDIR/$(basename ${i/-manpage.md/.pdf})   --toc -V geometry:"margin=1.5cm, paperwidth=595pt, paperheight=297mm" --pdf-engine=pdflatex ; done
+  - for i in markdown/*.md ; do cat $i | sed 's#__date__#'"$DATE"'#' | pandoc - -s -t latex -f markdown -o $PDFDIR/$(basename ${i/-manpage.md/.pdf})   --toc -V geometry:"margin=1.5cm, paperwidth=595pt, paperheight=297mm" --pdf-engine=xelatex ; done
 
     # HTML docs:
   - for i in markdown/*.md ; do cat $i | sed 's#__date__#'"$DATE"'#' | pandoc - -s -t html  -f markdown -o $HTMLDIR/$(basename ${i/-manpage.md/.html}) --toc ; done
