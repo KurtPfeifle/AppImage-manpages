@@ -20,7 +20,8 @@ before_script:
   - export HTMLDIR=$PREFIX/html
   - export VERSION=0.0.1
   - export DATE=$(/bin/date "+%Y-%m-%d")
-  - find $HOME/.local -type f -ls
+  - find $HOME/.local -type f -ls        # For debugging only
+  - find $PREFIX      -type d -ls        # For debugging only
 
 script:
 
