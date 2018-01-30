@@ -33,7 +33,7 @@ script:
   - for i in markdown/*.md ; do cat $i | sed 's#__date__#'"$DATE"'#' | pandoc - -s -t man   -f markdown -o $MANDIR/$(basename ${i/-manpage.md/.man}) -V footer:"Manual Page Version $VERSION, $DATE" ; done
 
     # PDF docs:
-  - for i in markdown/*.md ; do cat $i | sed 's#__date__#'"$DATE"'#' | pandoc - -s -t latex -f markdown -o $PDFDIR/$(basename ${i/-manpage.md/.pdf})   --toc -V geometry:"margin=1.5cm, paperwidth=595pt, paperheight=297mm" --pdf-engine=lualatex ; done
+  - for i in markdown/*.md ; do cat $i | sed 's#__date__#'"$DATE"'#' | pandoc - -s -t latex -f markdown -o $PDFDIR/$(basename ${i/-manpage.md/.pdf})   --toc -V geometry:"margin=1.5cm, paperwidth=595pt, paperheight=297mm" --pdf-engine=pdflatex ; done
 
     # HTML docs:
   - for i in markdown/*.md ; do cat $i | sed 's#__date__#'"$DATE"'#' | pandoc - -s -t html  -f markdown -o $HTMLDIR/$(basename ${i/-manpage.md/.html}) --toc ; done
