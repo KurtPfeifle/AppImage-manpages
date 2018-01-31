@@ -1,0 +1,16 @@
+
+% Get "filling dots" also for highest level of TOC
+\makeatletter
+\renewcommand*\l@section{\@dottedtocline{1}{1.5em}{2.3em}}
+\makeatother
+
+% Use fancy header+footer for each page
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[LE,RO]{The AppImage Documentation Project}
+\fancyhead[RE,LO]{themanpage}
+\fancyfoot[CE,CO]{\leftmark}
+\fancyfoot[LE,RO]{\thepage}
+
+
