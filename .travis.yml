@@ -44,7 +44,8 @@ script:
     #- for i in AppImage-appimaged.man                                                     ; do mv $MANDIR/$i $MANDIR/man8/${i/.man/.8} ; gzip $MANDIR/man8/${i/.man/.8} ; done   # Same for ?
   - MANPATH=$MANDIR mandb -u -c -s
   - ls -l $MANDIR/index*
-  - apropos AppImage
+  - MANPATH=$MANDIR apropos AppImage
+  - MANPATH=$MANDIR whatis AppImage-linuxdeployqt
   
     # PDF docs:
   - for i in markdown/AppIm*.md ; do cat markdown/fancyheaderfooter.tex | sed 's#themanpage#'"$(basename ${i/-manpage.md/})"'#' | tee markdown/$(basename ${i/-manpage.md/-fancyheaderfooter.tex}) ; done
