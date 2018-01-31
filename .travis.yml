@@ -35,29 +35,37 @@ script:
 
   - ls -l markdown/*.md
 
-    # Manual pages:
-  - mkdir $MANDIR/man{1,2,3,4,5,6,7}
+    # Generate manual pages:
   - for i in markdown/AppIm*.md ; do cat $i | sed 's#__date__#'"$DATE"'#' | pandoc - -s -t man   -f markdown -o $MANDIR/$(basename ${i/-manpage.md/.man}) -V footer:"Manual Page Version $VERSION, $DATE" ; done
-  - for i in AppImage-{appimageupdatetool,linuxdeployqt,AppImageUpdate,zsync2,zsyncmake2}.man ; do mv $MANDIR/$i $MANDIR/man1/${i/.man/.1} ; gzip $MANDIR/man1/${i/.man/.1} ; done  # Same for appimagetool,pkg2appimage
+
+    # Generate HTML docs:
+  - for i in markdown/AppIm*.md ; do cat $i | sed 's#__date__#'"$DATE"'#' | pandoc - -s -t html  -f markdown -o $HTMLDIR/$(basename ${i/-manpage.md/.html}) --toc ; done
+
+    # Generate EPUB docs:
+  - for i in markdown/AppIm*.md ; do cat $i | sed 's#__date__#'"$DATE"'#' | pandoc - -s -t epub3 -f markdown -o $EPUBDIR/$(basename ${i/-manpage.md/.epub}) --toc ; done
+
+    # Generate PDF docs:
+  - for i in markdown/AppIm*.md ; do cat markdown/fancyheaderfooter.tex | sed 's#themanpage#'"$(basename ${i/-manpage.md/})"'#' | tee markdown/$(basename ${i/-manpage.md/-fancyheaderfooter.tex}) ; done
+  - for i in markdown/AppIm*.md ; do cat $i | sed 's#__date__#'"$DATE"'#' | pandoc - -s -t latex -f markdown -o $PDFDIR/$(basename ${i/-manpage.md/.pdf})   --toc -V geometry:"margin=1.5cm, paperwidth=595pt, paperheight=297mm" --pdf-engine=xelatex -H markdown/$(basename ${i/-manpage.md/-fancyheaderfooter.tex}) -V classoption:"twoside" ; done
+  - rm -rf markdown/AppImage-*-fancyheaderfooter.tex
+
+    # Post-process manual pages (move them into appropriate sections):
+  - mkdir $MANDIR/man{1,2,3,4,5,6,7}
+  - for i in AppImage-{appimageupdatetool,linuxdeployqt,AppImageUpdate,zsync2,zsyncmake2}.man ; do mv $MANDIR/$i $MANDIR/man1/${i/.man/.1} ; gzip $MANDIR/man1/${i/.man/.1} ; done   # Same for appimagetool,pkg2appimage
   - for i in AppImage-Overview.man                                                            ; do mv $MANDIR/$i $MANDIR/man7/${i/.man/.7} ; gzip $MANDIR/man7/${i/.man/.7} ; done   # Same for AppDir,AppRun,Legacy,FAQ,payload,runtime,validate
     #- for i in AppImage-AppImage.man                                                            ; do mv $MANDIR/$i $MANDIR/man5/${i/.man/.5} ; gzip $MANDIR/man5/${i/.man/.5} ; done   # Same for ?
     #- for i in AppImage-appimaged.man                                                           ; do mv $MANDIR/$i $MANDIR/man8/${i/.man/.8} ; gzip $MANDIR/man8/${i/.man/.8} ; done   # Same for ?
+
+    # Create mandb database for 'apropos' and 'whatis':
   - MANPATH=$MANDIR mandb -u -c -s
+
+    # Test if we got an index.db:
   - ls -l $MANDIR/index*
+
+    # Test if 'apropos' + 'whatis' work:
   - MANPATH=$MANDIR apropos -l AppImage
   - MANPATH=$MANDIR apropos -l linuxdeploy appimageupdate zsync overview
   - MANPATH=$MANDIR whatis  -l AppImage-linuxdeployqt
-
-    # PDF docs:
-  - for i in markdown/AppIm*.md ; do cat markdown/fancyheaderfooter.tex | sed 's#themanpage#'"$(basename ${i/-manpage.md/})"'#' | tee markdown/$(basename ${i/-manpage.md/-fancyheaderfooter.tex}) ; done
-  - for i in markdown/AppIm*.md ; do cat $i | sed 's#__date__#'"$DATE"'#' | pandoc - -s -t latex -f markdown -o $PDFDIR/$(basename ${i/-manpage.md/.pdf})   --toc -V geometry:"margin=1.5cm, paperwidth=595pt, paperheight=297mm" --pdf-engine=xelatex -H markdown/$(basename ${i/-manpage.md/-fancyheaderfooter.tex}) --toc -V classoption:"twoside" ; done
-  - rm -rf markdown/AppImage-*-fancyheaderfooter.tex
-
-    # HTML docs:
-  - for i in markdown/AppIm*.md ; do cat $i | sed 's#__date__#'"$DATE"'#' | pandoc - -s -t html  -f markdown -o $HTMLDIR/$(basename ${i/-manpage.md/.html}) --toc ; done
-
-    # EPUB docs:
-  - for i in markdown/AppIm*.md ; do cat $i | sed 's#__date__#'"$DATE"'#' | pandoc - -s -t epub3 -f markdown -o $EPUBDIR/$(basename ${i/-manpage.md/.epub}) --toc ; done
 
     # Make tarball:
   - export TARBALL=AppImage-manpages-$TRAVIS_BUILD_NUMBER-git.$(git rev-parse --short HEAD)-$DATE.tar.gz
