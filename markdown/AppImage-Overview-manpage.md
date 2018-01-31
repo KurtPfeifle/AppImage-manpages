@@ -1,5 +1,3 @@
-\listfiles
-
 % APPIMAGEOVERVIEW(1) AppImage Technology Overview | The AppImage Documentation Project
 %
 % __date__
@@ -18,10 +16,22 @@
 
 # Name
 
-**`AppImageOverview`** -- An implementation of the AppDir concept as a single compressed file in order to advance this idea to the "1 application = 1 file" stage (and even to "Several applications = 1 file").
+**`AppImageOverview`** -- Description of the general concepts of 'AppImages': Linux binaries represented by a single file and capable to directly run on a broad range of distributions without any modification.
+
+<!--
+
+ # Synopsis
+
+`./some_app.AppImage  [ --appimage-help | --appimage-mount | --appimage-extract | --appimage-updateinfo | ... ]`
+
+-->
 
 
-# Synopsis
+# Description
+
+<!--
+An implementation of the AppDir concept as a single compressed file in order to advance this idea to the "1 application = 1 file" stage (and even to "Several applications = 1 file").
+-->
 
 An AppImage is a compressed AppDir.
 (See `man AppDir` for details about the latter.)
