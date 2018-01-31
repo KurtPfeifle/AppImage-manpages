@@ -172,7 +172,7 @@ They may not be used by the payload application.
 `--appimage-portable-home`
 
 :    Create an empty subdirectory with exactly the same name + path as the AppImage, but an additional `.home` suffix.
-     The AppImage will use this directory from now on as if `ATH` environment variable had been set to point to it.
+     The AppImage will use this directory from now on as if `PATH` environment variable had been set to point to it.
 
 
 
