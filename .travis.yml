@@ -5,7 +5,7 @@ dist: trusty
 before_script:
 
   - sudo apt-get update
-  - sudo apt-get install texlive-latex-extra texlive-xetex texlive-latex-recommended texlive-math-extra fonts-droid fonts-ipafont-mincho fonts-ipafont-gothic fonts-arphic-ukai fonts-arphic-uming fonts-unfonts-core   # "No insta candidate": fonts-japanese-mincho  fonts-japanese-gothic 
+  - sudo apt-get install man-db texlive-latex-extra texlive-xetex texlive-latex-recommended texlive-math-extra fonts-droid fonts-ipafont-mincho fonts-ipafont-gothic fonts-arphic-ukai fonts-arphic-uming fonts-unfonts-core   # "No insta candidate": fonts-japanese-mincho  fonts-japanese-gothic 
   - mkdir $HOME/Downloads
   - export PANDOCVERS=2.1.1-linux
   - wget https://github.com/jgm/pandoc/releases/download/2.1.1/pandoc-$PANDOCVERS.tar.gz -O $HOME/Downloads/pandoc.tar.gz
@@ -36,8 +36,16 @@ script:
   - ls -l markdown/*.md
 
     # Manual pages:
+  - mkdir $MANDIR/man{1,2,3,4,5,6,7}
   - for i in markdown/AppIm*.md ; do cat $i | sed 's#__date__#'"$DATE"'#' | pandoc - -s -t man   -f markdown -o $MANDIR/$(basename ${i/-manpage.md/.man}) -V footer:"Manual Page Version $VERSION, $DATE" ; done
-
+  - for i in AppImage-{appimagetool,linuxdeployqt,AppImageUpdate,zsync2,zsyncmake2}.man ; do mv $MANDIR/$i $MANDIR/man1/${i/.man/.1} ; gzip $MANDIR/man1/${i/.man/.1} ; done  # Same for appimagetool,pkg2appimage
+  - for i in AppImage-Overview.man                                                      ; do mv $MANDIR/$i $MANDIR/man7/${i/.man/.7} ; gzip $MANDIR/man7/${i/.man/.7} ; done   # Same for AppDir,AppRun,Legacy,FAQ,payload,runtime,validate
+    #- for i in AppImage-AppImage.man                                                      ; do mv $MANDIR/$i $MANDIR/man5/${i/.man/.5} ; gzip $MANDIR/man5/${i/.man/.5} ; done   # Same for ?
+    #- for i in AppImage-appimaged.man                                                     ; do mv $MANDIR/$i $MANDIR/man8/${i/.man/.8} ; gzip $MANDIR/man8/${i/.man/.8} ; done   # Same for ?
+  - MANPATH=$MANDIR mandb -u -c -s
+  - ls -l $MANDIR/index*
+  - apropos AppImage
+  
     # PDF docs:
   - for i in markdown/AppIm*.md ; do cat markdown/fancyheaderfooter.tex | sed 's#themanpage#'"$(basename ${i/-manpage.md/})"'#' | tee markdown/$(basename ${i/-manpage.md/-fancyheaderfooter.tex}) ; done
   - for i in markdown/AppIm*.md ; do cat $i | sed 's#__date__#'"$DATE"'#' | pandoc - -s -t latex -f markdown -o $PDFDIR/$(basename ${i/-manpage.md/.pdf})   --toc -V geometry:"margin=1.5cm, paperwidth=595pt, paperheight=297mm" --pdf-engine=xelatex -H markdown/$(basename ${i/-manpage.md/-fancyheaderfooter.tex}) --toc -V classoption:"twoside" ; done
