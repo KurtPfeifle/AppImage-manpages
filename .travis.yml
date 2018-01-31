@@ -72,7 +72,7 @@ script:
   - tar cvzf $TARBALL $PREFIX
 
     # Upload results:
-  - wget -c https://github.com/probonopd/uploadtool/raw/master/upload.sh
-  - bash upload.sh ./$TARBALL     # Not yet!
+    #- wget -c https://github.com/probonopd/uploadtool/raw/master/upload.sh
+    #- bash upload.sh ./$TARBALL     # Not yet!
   - curl --upload-file $TARBALL  https://transfer.sh/$TARBALL
 
