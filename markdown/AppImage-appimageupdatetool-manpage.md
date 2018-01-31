@@ -19,14 +19,14 @@
 
 # Name
 
-**`appimageupdatetool`** -- Little command line utility to help users automatically upgrade AppImages on their system.
+**`appimageupdatetool`** - Little command line utility to help users automatically upgrade AppImages on their system
 
 
 # Synopsis
 
-`appimageupdatetool` *-h | --help*
+`appimageupdatetool` *`-h | --help`*
 
-`appimageupdatetool` *[option]* *<some>.AppImage*
+`appimageupdatetool` *`[option]`* *`<some>.AppImage`*
 
 
 # Description

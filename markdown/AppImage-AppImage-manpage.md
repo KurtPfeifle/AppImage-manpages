@@ -20,15 +20,17 @@
 
 # Name
 
-**`some.AppImage`** -- a specific method to bundle an application into a single file which runs on a big number of Linux distros without requiring root privileges, and without requiring as a pre-condition to have any specific runtime or framework installed.
+**`some.AppImage`** - Method to bundle an application into a single file capable to directly run on a big number of Linux distros
 
 
 # Synopsis
 
-`any.AppImage [options] [ [file1 [ [file2] ] .... ]`
+`some.AppImage`  *`[options]`* *`[ [file1 [ [file2] ] .... ]`*
 
 
 # Description
+
+An AppImage can be used without requiring root privileges, and without requiring as a pre-condition to have any specific runtime or framework installed.
 
 The name of an AppImage can be anything and use all characters which are legal for filenames.
 Giving it the `.AppImage` suffix is simply a convention and not required.

@@ -18,7 +18,8 @@
 
 # Name
 
-**`AppImageOverview`** -- Description of the general concepts of 'AppImages': Linux binaries represented by a single file and capable to directly run on a broad range of distributions without any modification.
+**`AppImageOverview`** - Description of general concepts for 'AppImages': Linux binaries represented by a single file, capable to directly run on a broad range of distributions without any modification
+
 
 <!--
 

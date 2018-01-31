@@ -19,7 +19,7 @@
 
 # Name
 
-**`AppImageUpdate`** -- Little  utility with a simple GUI to help users automatically upgrade AppImages on their system.
+**`AppImageUpdate`** - Little utility with a simple GUI to help users automatically upgrade AppImages on their system
 
 
 # Synopsis

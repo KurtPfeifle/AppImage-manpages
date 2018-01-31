@@ -19,12 +19,12 @@
 
 # Name
 
-**`zsyncmake2`** -- Create a *.zsync* file for an existing file.
+**`zsyncmake2`** - Create a *.zsync* file for an existing file
 
 
 # Synopsis
 
-`zsyncmake2` *[options]* *[path/to/]filename*
+`zsyncmake2` *`[options]`* *`[path/to/]filename`*
 
 
 # Description

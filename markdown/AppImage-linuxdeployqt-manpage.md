@@ -25,12 +25,14 @@
 
 # Name
 
-**`linuxdeployqt`** -- take an application as input and make it self-contained by copying in the Qt libraries and plugins which the application uses.
+**`linuxdeployqt`** - Take an application as input and make it self-contained by copying in the Qt libraries and plugins which the application uses
+
+(Optionally create an AppImage from input after copying in the libs and plugins succeeded.)
 
 
 # Synopsis
 
-`linuxdeployqt`  *<app-binary|desktop file>*  *[options]*
+`linuxdeployqt`  *`<app-binary|desktop file>`*  *`[options]`*
 
 
 # Description

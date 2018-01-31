@@ -18,14 +18,14 @@
 
 # Name
 
-**`zsync2`** -- Partial/differential file download client over HTTP(S), the probably easiest efficient way to update (binary) files.
+**`zsync2`** - Partial/differential file download client over HTTP(S), the probably easiest efficient way to update (binary) files
 
 (Note: zsync2 is a working title only. Its name may change in the future.)
 
 
 # Synopsis
 
-`zsync2` *[options]*  *[path|URL]*
+`zsync2` *`[options]`*  *`[path|URL]`*
 
 
 # Description
