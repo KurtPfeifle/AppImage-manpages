@@ -2,13 +2,15 @@
 %
 % __date__
 
-<!-- Generate man, HTML or PDF output like so:
+<!-- Generate man, HTML, EPUB or PDF output like so:
 
     DATE=$(date "+%Y-%m-%d")
     VERSION=0.0.1
     # replace line 5 in this file, above: $DATE instead of '__date__'
     pandoc AppImage-AppImage-manpage.md -o AppImage-AppImage.man  -s -f markdown -t man   -V footer:"Manual Page Version $VERSION, $DATE"
-    pandoc AppImage-AppImage-manpage.md -o AppImage-AppImage.pdf  -s -f markdown -t latex -V footer:"Manual Page Version $VERSION" -V geometry:"margin=2.0cm, paperwidth=595pt, paperheight=297mm"
+    pandoc AppImage-AppImage-manpage.md -o AppImage-AppImage.pdf  -s -f markdown -t latex -V footer:"Manual Page Version $VERSION" -V geometry:"margin=2.0cm, paperwidth=595pt, paperheight=297mm" \
+                                                                  -H fancyheaderfooter.tex \-\-toc -V classoption:"twoside"
+
     pandoc AppImage-AppImage-manpage.md -o AppImage-AppImage.html -s -f markdown -t html
     pandoc AppImage-AppImage-manpage.md -o AppImage-AppImage.epub -s -f markdown -t epub3
 
@@ -325,6 +327,7 @@ AppImage-Legacy(7),
 AppImage-Overview(7),
 AppImage-appimaged(8),
 AppImage-appimagetool(1),
+AppImage-appimageupdatetool(1),
 AppImage-linuxdeployqt(1),
 AppImage-payload(7)
 AppImage-pkg2appimage(1),

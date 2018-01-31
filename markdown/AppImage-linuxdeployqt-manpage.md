@@ -2,13 +2,15 @@
 %
 % __date__
 
-<!-- Generate man, HTML or PDF output like so:
+<!-- Generate man, HTML, EPUB or PDF output like so:
 
     DATE=$(date "+%Y-%m-%d")
     VERSION=0.0.1
     # replace line 5 in this file, above: $DATE instead of '__date__'
     pandoc AppImage-linuxdeployqt-manpage.md -o AppImage-linuxdeployqt.man  -s -f markdown -t man   -V footer:"Manual Page Version $VERSION, $DATE"
-    pandoc AppImage-linuxdeployqt-manpage.md -o AppImage-linuxdeployqt.pdf  -s -f markdown -t latex -V footer:"Manual Page Version $VERSION" -V geometry:"margin=2.0cm, paperwidth=595pt, paperheight=297mm"
+    pandoc AppImage-linuxdeployqt-manpage.md -o AppImage-linuxdeployqt.pdf  -s -f markdown -t latex -V footer:"Manual Page Version $VERSION" -V geometry:"margin=2.0cm, paperwidth=595pt, paperheight=297mm" \
+                                                                  -H fancyheaderfooter.tex \-\-toc -V classoption:"twoside"
+
     pandoc AppImage-linuxdeployqt-manpage.md -o AppImage-linuxdeployqt.html -s -f markdown -t html
     pandoc AppImage-linuxdeployqt-manpage.md -o AppImage-linuxdeployqt.epub -s -f markdown -t epub3
 
@@ -83,10 +85,10 @@ The tool as well as its name is inspired by two other tools named `windowsdeploy
 ## Differences to `macdeployqt`
 
 `linuxdeployqt` is conceptually based on Qt's [Mac Deployment Tool](http://doc.qt.io/qt-5/osx-deployment.html), `macdeployqt`.
-`macdeployqt` lives in the tools applications of the Qt Toolkit.
-`linuxdeployqt` however has been changed to a slightly different logic and to other tools needed for Linux.
+`macdeployqt` lives in the set of tools applications of the Qt Toolkit.
+`linuxdeployqt` however has been changed to a slightly different logic and to other tools needed for Linux:
 
-* Instead of an `.app` bundle for macOS, this produces an [AppDir](http://rox.sourceforge.net/desktop/AppDirs.html) for Linux (see also `man AppImage-AppDir.man`).
+* Instead of an `.app` bundle for macOS, this produces an [AppDir](http://rox.sourceforge.net/desktop/AppDirs.html) for Linux (see also `AppImage-AppDir(7)`).
 * Instead of a `.dmg` disk image for macOS, this produces an [AppImage](http://appimage.org/) for Linux.
   An AppImage is quite similar to a .dmg but it directly executes the contained application rather than just opening a window on the desktop from where the application can be launched with an extra action.
 
@@ -149,6 +151,7 @@ AppImage-Legacy(7),
 <!-- AppImage-Overview(7), -->
 AppImage-appimaged(8),
 AppImage-appimagetool(1),
+AppImage-appimageupdatetool(1),
 AppImage-linuxdeployqt(1),
 AppImage-payload(7)
 AppImage-pkg2appimage(1),
