@@ -77,7 +77,7 @@ script:
   - for i in $HOME/Downloads/*.md ; do cat markdown/fancyheaderfooter.tex | sed 's#themanpage#'"$(basename ${i/-manpage.md/})"'#' | tee markdown/$(basename ${i/-manpage.md/-fancyheaderfooter.tex}) ; done
   - for i in $HOME/Downloads/*.md; do pandoc $i -s -t html  -f markdown -o $HTMLDIR/$(basename ${i/.md/.html}) --toc -V title="$( echo "$(basename ${i/.md/})" | sed 's/-/ /g' )" ; done
   - for i in $HOME/Downloads/*.md; do pandoc $i -s -t epub3 -f markdown -o $EPUBDIR/$(basename ${i/.md/.epub}) --toc -V title="$( echo "$(basename ${i/.md/})" | sed 's/-/ /g' )" ; done
-  - for i in $HOME/Downloads/*.md; do pandoc $i -s -t latex -f markdown -o $PDFDIR/$( basename ${i/.md/.pdf})  --toc -V title="$( echo "$(basename ${i/.md/})" | sed 's/-/ /g' )" -V geometry:"margin=2cm, paperwidth=595pt, paperheight=29.7cm" --pdf-engine=xelatex -V classoption:"twoside" -H markdown/$(basename ${i/.md/-fancyheaderfooter.tex}); done
+  - for i in $HOME/Downloads/*.md; do pandoc $i -s -t latex -f markdown -o $PDFDIR/$( basename ${i/.md/.pdf})  --toc -V title="$( echo "$(basename ${i/.md/})" | sed 's/-/ /g' )" -V geometry:"margin=2cm, paperwidth=595pt, paperheight=29.7cm" --pdf-engine=xelatex -V classoption:"twoside" -H markdown/$(basename ${i/-manpage.md/-fancyheaderfooter.tex}); done
 
     # Make tarball:
   - export TARBALL=AppImage-manpages-$TRAVIS_BUILD_NUMBER-git.$(git rev-parse --short HEAD)-$DATE.tar.gz
