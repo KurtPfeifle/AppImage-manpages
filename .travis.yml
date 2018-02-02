@@ -74,9 +74,9 @@ script:
   - wget https://github.com/AppImage/AppImageUpdate/raw/rewrite/README.md -O $HOME/Downloads/AppImageUpdate-README.md
 
     # Generate HTML, EPUB and PDF from downloaded docu:
-  - for i in $HOME/Downloads/*.md; do pandoc $i -s -t html  -f markdown -o $HTMLDIR/${i/.md/.html} --toc -V title="$( echo "$(basename ${i/.md/})" | sed 's#-# #g' )" ; done
-  - for i in $HOME/Downloads/*.md; do pandoc $i -s -t epub3 -f markdown -o $EPUBDIR/${i/.md/.epub} --toc -V title="$( echo "$(basename ${i/.md/})" | sed 's#-# #g' )" ; done
-  - for i in $HOME/Downloads/*.md; do pandoc $i -s -t PDF   -f markdown -o $PDFDIR/${i/.md/.pdf}   --toc -V title="$( echo "$(basename ${i/.md/})" | sed 's#-# #g' )" -V geometry:"margin=2cm, paperwidth=595pt, paperheight=29.7cm --pdfengine=xelatex -V classoption:"twoside" -H markdown/$basename ${i/.md/-fancyheaderfooter.tex})"; done
+  - for i in $HOME/Downloads/*.md; do pandoc $i -s -t html  -f markdown -o $HTMLDIR/${i/.md/.html} --toc -V title="$( echo "$(basename ${i/.md/})" | sed 's/-/ /g' )" ; done
+  - for i in $HOME/Downloads/*.md; do pandoc $i -s -t epub3 -f markdown -o $EPUBDIR/${i/.md/.epub} --toc -V title="$( echo "$(basename ${i/.md/})" | sed 's/-/ /g' )" ; done
+  - for i in $HOME/Downloads/*.md; do pandoc $i -s -t PDF   -f markdown -o $PDFDIR/${i/.md/.pdf}   --toc -V title="$( echo "$(basename ${i/.md/})" | sed 's/-/ /g' )" -V geometry:"margin=2cm, paperwidth=595pt, paperheight=29.7cm --pdfengine=xelatex -V classoption:"twoside" -H markdown/$basename ${i/.md/-fancyheaderfooter.tex})"; done
 
     # Make tarball:
   - export TARBALL=AppImage-manpages-$TRAVIS_BUILD_NUMBER-git.$(git rev-parse --short HEAD)-$DATE.tar.gz
